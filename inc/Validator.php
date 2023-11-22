@@ -19,7 +19,7 @@ class Validator
 
     public function optional(mixed $default = null): Validator
     {
-        if( ! empty($this->value->get() ) ) {
+        if (!empty($this->value->get())) {
             return $this;
         }
 
@@ -29,11 +29,11 @@ class Validator
 
     public function optionalIf(bool|callable $is_optional, mixed $default = null): Validator
     {
-        if( is_callable( $is_optional ) ) {
+        if (is_callable($is_optional)) {
             $is_optional = $is_optional();
         }
 
-        if( ! $is_optional ) {
+        if (!$is_optional) {
             return $this;
         }
 
@@ -67,7 +67,7 @@ class Validator
      */
     public function isString(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -85,7 +85,7 @@ class Validator
      */
     public function cleanString(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -110,7 +110,7 @@ class Validator
      */
     public function isNumeric(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -134,7 +134,7 @@ class Validator
      */
     public function isLowercase(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -158,7 +158,7 @@ class Validator
      */
     public function isUppercase(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -183,7 +183,7 @@ class Validator
      */
     public function isEmail(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -208,7 +208,7 @@ class Validator
      */
     public function isUrl(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -234,7 +234,7 @@ class Validator
      */
     public function matches(string $pattern, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -259,7 +259,7 @@ class Validator
      */
     public function contains(string $needle, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -284,7 +284,7 @@ class Validator
      */
     public function notContains(string $needle, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -309,7 +309,7 @@ class Validator
      */
     public function startsWith(string $needle, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -334,7 +334,7 @@ class Validator
      */
     public function endsWith(string $needle, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -374,7 +374,7 @@ class Validator
      */
     public function isInt(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt()) {
             $this->error($errorMessage, $data);
@@ -392,7 +392,7 @@ class Validator
      */
     public function isFloat(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -411,7 +411,7 @@ class Validator
      */
     public function isGreaterThan(int|float $value, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -436,7 +436,7 @@ class Validator
      */
     public function isGreaterThanOrEqual(int|float $value, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -461,7 +461,7 @@ class Validator
      */
     public function isLessThan(int|float $value, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -486,7 +486,7 @@ class Validator
      */
     public function isLessThanOrEqual(int|float $value, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -511,7 +511,7 @@ class Validator
      */
     public function isEqual(int|float $value, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -536,7 +536,7 @@ class Validator
      */
     public function isNotEqual(int|float $value, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -562,7 +562,7 @@ class Validator
      */
     public function isBetween(int|float $min, int|float $max, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -588,7 +588,7 @@ class Validator
      */
     public function isNotBetween(int|float $min, int|float $max, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isInt() && !$this->value->isFloat()) {
             $this->error($errorMessage, $data);
@@ -619,7 +619,7 @@ class Validator
      */
     public function isBool(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isBool()) {
             $this->error($errorMessage, $data);
@@ -638,7 +638,7 @@ class Validator
      */
     public function isTrue(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isBool()) {
             $this->error($errorMessage, $data);
@@ -661,7 +661,7 @@ class Validator
      */
     public function isFalse(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isBool()) {
             $this->error($errorMessage, $data);
@@ -694,7 +694,7 @@ class Validator
      */
     public function isDate(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isString()) {
             $this->error($errorMessage, $data);
@@ -729,7 +729,7 @@ class Validator
      */
     public function isBetweenDates(DateTime $min, DateTime $max, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isDate()) {
             $this->error($errorMessage, $data);
@@ -756,7 +756,7 @@ class Validator
      */
     public function isNotBetweenDates(DateTime $min, DateTime $max, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isDate()) {
             $this->error($errorMessage, $data);
@@ -782,7 +782,7 @@ class Validator
      */
     public function isBeforeDate(DateTime $date, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isDate()) {
             $this->error($errorMessage, $data);
@@ -807,7 +807,7 @@ class Validator
      */
     public function isAfterDate(DateTime $date, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isDate()) {
             $this->error($errorMessage, $data);
@@ -837,7 +837,7 @@ class Validator
      */
     public function isArray(?callable $shape = null, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isArray()) {
             $this->error($errorMessage, $data);
@@ -872,7 +872,7 @@ class Validator
      */
     public function isArrayOfShape(array $schema = [], string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isArray()) {
             $this->error($errorMessage, $data);
@@ -915,7 +915,7 @@ class Validator
      */
     public function isNull(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!$this->value->isNull()) {
             $this->error($errorMessage, $data);
@@ -934,7 +934,7 @@ class Validator
      */
     public function isNotNull(string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if ($this->value->isNull()) {
             $this->error($errorMessage, $data);
@@ -954,7 +954,7 @@ class Validator
      */
     public function isOneOf(array $values = [], string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (!in_array($this->value->get(), $values)) {
             $this->error($errorMessage, $data);
@@ -974,7 +974,7 @@ class Validator
      */
     public function isNotOneOf(array $values = [], string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         if (in_array($this->value->get(), $values)) {
             $this->error($errorMessage, $data);
@@ -1012,7 +1012,7 @@ class Validator
      */
     public function transform(callable $callback): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         $result = call_user_func($callback, $this->value->get());
         $this->value->set($result);
@@ -1027,7 +1027,7 @@ class Validator
      */
     public function validate(callable $callback): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         $callback($this->value->get());
         return $this;
@@ -1042,7 +1042,7 @@ class Validator
      */
     public function min(int $min, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         $num_to_compare = $this->value->get();
         if ($this->value->isString()) {
@@ -1069,7 +1069,7 @@ class Validator
      */
     public function max(int $max, string $errorMessage = "", mixed $data = null): Validator
     {
-        if( $this->value->locked() ) return $this;
+        if ($this->value->locked()) return $this;
 
         $num_to_compare = $this->value->get();
         if ($this->value->isString()) {

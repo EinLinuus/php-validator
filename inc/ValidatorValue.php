@@ -13,15 +13,15 @@ class ValidatorValue
         $this->value = $value;
     }
 
-    public function lock( mixed $default = null ): void
+    public function lock(mixed $default = null): void
     {
-      $this->locked = true;
-      $this->locked_default = $default;
+        $this->locked = true;
+        $this->locked_default = $default;
     }
 
     public function unlock(): void
     {
-      $this->locked = false;
+        $this->locked = false;
     }
 
     public function isString(): bool
@@ -56,7 +56,7 @@ class ValidatorValue
 
     public function get(): mixed
     {
-        if( $this->locked ) {
+        if ($this->locked) {
             return $this->locked_default;
         }
 

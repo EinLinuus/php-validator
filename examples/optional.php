@@ -17,7 +17,7 @@ try {
             ->max(32, "Name must be at most 32 characters long", "name"),
         "gender" => fn(Validator $v) => $v->optional()->isOneOf(["male", "female"], "Please enter a valid gender", "gender"),
         "public" => fn(Validator $v) => $v->isBool("Public must be a boolean", "public"),
-        "username" => fn(Validator $v) => $v->optionalIf(! (bool) $input["public"])->isString("Username must be a string", "username")
+        "username" => fn(Validator $v) => $v->optionalIf(!(bool)$input["public"])->isString("Username must be a string", "username")
             ->cleanString()
             ->min(3, "Username must be at least 3 characters long", "username")
             ->max(16, "Username must be at most 32 characters long", "username")
@@ -28,4 +28,3 @@ try {
 
 $validated = $v->get();
 var_dump($validated);
-
