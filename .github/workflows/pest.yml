@@ -1,0 +1,16 @@
+name: Pest Testing
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+        name: Checkout
+      - uses: php-actions/composer@v5
+        name: Composer
+      - name: Run Pest
+        run: ./vendor/bin/pest
