@@ -15,7 +15,7 @@ require_once __DIR__ . "/../inc/ValidatorException.php";
 |
 */
 
-//uses(\Tests\ValidatorTestCase::class)->in('Feature');
+uses(\Tests\ValidatorTestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
