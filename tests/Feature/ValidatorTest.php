@@ -140,6 +140,30 @@ it("Can fail custom validations", function () {
     var_dump($v->get());
 })->throws(ValidatorException::class);
 
-// TODO: Optional values
-// TODO: cleanString()
-// TODO: Date
+it("Supports optional values")->todo();
+
+it("Supports conditionally optional values")->todo();
+
+it("Can clean strings")->todo();
+
+it("Can convert strings to dates")->todo();
+
+it("Supports min() on strings")->todo();
+
+it("Supports max() on strings")->todo();
+
+it("Supports min() on arrays")->todo();
+
+it("Supports max() on arrays")->todo();
+
+it("Supports min() on integers")->todo();
+
+it("Supports max() on integers")->todo();
+
+it("Can check for unique values")->todo();
+
+it("Can check for regex matches")->todo();
+
+it("Can validate emails")->todo();
+
+it("Can validate URLs")->todo();
