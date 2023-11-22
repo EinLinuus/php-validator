@@ -5,10 +5,23 @@ class ValidatorValue
 {
 
     private mixed $value;
+    private bool $locked = false;
+    private mixed $locked_default = null;
 
     public function __construct(mixed $value)
     {
         $this->value = $value;
+    }
+
+    public function lock( mixed $default = null ): void
+    {
+      $this->locked = true;
+      $this->locked_default = $default;
+    }
+
+    public function unlock(): void
+    {
+      $this->locked = false;
     }
 
     public function isString(): bool
@@ -43,6 +56,10 @@ class ValidatorValue
 
     public function get(): mixed
     {
+        if( $this->locked ) {
+            return $this->locked_default;
+        }
+
         return $this->value;
     }
 
@@ -54,6 +71,11 @@ class ValidatorValue
     public function set(mixed $value): void
     {
         $this->value = $value;
+    }
+
+    public function locked(): bool
+    {
+        return $this->locked;
     }
 
 }
