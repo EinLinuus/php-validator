@@ -136,31 +136,205 @@ it("Can fail custom validations", function () {
             throw new ValidatorException("Value is not test");
         }
     });
-
-    var_dump($v->get());
 })->throws(ValidatorException::class);
 
-it("Supports optional values")->todo();
+it("Supports optional values", function () {
+    $v = new Validator(null);
+    try {
+        $v->optional()->isString();
+        expect($v->get())->toBeNull();
+    } catch (ValidatorException $e) {
+        expect(false)->toBeTrue("Validation failed: " . $e->getMessage());
+    }
+
+    $v = new Validator("Lorem Ipsum");
+    try {
+        $v->optional()->isString();
+        expect($v->get())->toBe("Lorem Ipsum");
+    } catch (ValidatorException $e) {
+        expect(false)->toBeTrue("Validation failed: " . $e->getMessage());
+    }
+
+    $v = new Validator(20);
+    try {
+        $v->optional()->isString();
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
 
 it("Supports conditionally optional values")->todo();
 
-it("Can clean strings")->todo();
+it("Can clean strings", function () {
+    $v = new Validator("  test  ");
+    $v->cleanString();
+    expect($v->get())->toBe("test");
 
-it("Can convert strings to dates")->todo();
+    $v = new Validator("<h1>hello world</h1>");
+    $v->cleanString();
+    expect($v->get())->toBe("&lt;h1&gt;hello world&lt;/h1&gt;");
 
-it("Supports min() on strings")->todo();
+    $v = new Validator(20);
+    try {
+        $v->cleanString();
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
 
-it("Supports max() on strings")->todo();
+it("Can convert strings to dates", function () {
+    $v = new Validator("2021-01-01");
+    $v->isDate();
+    expect($v->get())->toBeInstanceOf(DateTime::class);
 
-it("Supports min() on arrays")->todo();
+    $v = new Validator("2021-01-01 12:00:00");
+    $v->isDate();
+    expect($v->get())->toBeInstanceOf(DateTime::class);
 
-it("Supports max() on arrays")->todo();
+    $v = new Validator("2021-01-01 12:00:00.000000");
+    $v->isDate();
+    expect($v->get())->toBeInstanceOf(DateTime::class);
 
-it("Supports min() on integers")->todo();
+    $v = new Validator("2021-01-01T12:00:00");
+    $v->isDate();
+    expect($v->get())->toBeInstanceOf(DateTime::class);
 
-it("Supports max() on integers")->todo();
+    $v = new Validator("01.01.2021");
+    $v->isDate();
+    expect($v->get())->toBeInstanceOf(DateTime::class);
 
-it("Can check for unique values")->todo();
+    $v = new Validator("01.01.2021 12:00:00");
+    $v->isDate();
+    expect($v->get())->toBeInstanceOf(DateTime::class);
+
+    $v = new Validator(30);
+    try {
+        $v->isDate();
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+
+    $v = new Validator("abcdefg");
+    try {
+        $v->isDate();
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Supports min() on strings", function () {
+    $v = new Validator("test");
+    $v->isString()->min(2);
+    expect($v->get())->toBe("test");
+
+    $v = new Validator("test");
+    try {
+        $v->isString()->min(5);
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Supports max() on strings", function () {
+    $v = new Validator("test");
+    $v->isString()->max(4);
+    expect($v->get())->toBe("test");
+
+    $v = new Validator("test");
+    try {
+        $v->isString()->max(2);
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Supports min() on arrays", function () {
+    $v = new Validator([1, 2, 3]);
+    $v->isArray()->min(2);
+    expect($v->get())->toBeArray()->toHaveCount(3);
+
+    $v = new Validator([1, 2, 3]);
+    try {
+        $v->isArray()->min(5);
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Supports max() on arrays", function () {
+    $v = new Validator([1, 2, 3]);
+    $v->isArray()->max(4);
+    expect($v->get())->toBeArray()->toHaveCount(3);
+
+    $v = new Validator([1, 2, 3]);
+    try {
+        $v->isArray()->max(2);
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Supports min() on integers", function () {
+    $v = new Validator(5);
+    $v->isInt()->min(2);
+    expect($v->get())->toBe(5);
+
+    $v = new Validator(5);
+    try {
+        $v->isInt()->min(10);
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Supports max() on integers", function () {
+    $v = new Validator(5);
+    $v->isInt()->max(10);
+    expect($v->get())->toBe(5);
+
+    $v = new Validator(5);
+    try {
+        $v->isInt()->max(2);
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
+
+it("Can check for unique values", function () {
+    $v = new Validator([1, 2, 3]);
+    $v->isUnique();
+    expect($v->get())->toBeArray()->toHaveCount(3);
+
+    $v = new Validator(["hello", "world"]);
+    $v->isUnique();
+    expect($v->get())->toBeArray()->toHaveCount(2);
+
+    $v = new Validator([1, 2, 3, 1]);
+    try {
+        $v->isUnique();
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+
+    $v = new Validator(["hello", "world", "hello"]);
+    try {
+        $v->isUnique();
+        expect(false)->toBeTrue("Validation should have failed");
+    } catch (ValidatorException $e) {
+        expect(true)->toBeTrue();
+    }
+});
 
 it("Can check for regex matches")->todo();
 
