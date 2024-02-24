@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+use EinLinuus\PhpValidator\EinLinuus\PhpValidator\Validator;
+use EinLinuus\PhpValidator\EinLinuus\PhpValidator\ValidatorException;
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
 $input = [
     25,
     12,

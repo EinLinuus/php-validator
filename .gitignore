@@ -5,3 +5,4 @@ tests
 .idea
 .vscode
 node_modules
+/vendor/

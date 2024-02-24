@@ -1,0 +1,19 @@
+{
+    "name": "einlinuus/php-validator",
+    "description": "Minimal library to validate and transform user input",
+    "type": "library",
+    "license": "GNU GPLv3",
+    "autoload": {
+        "psr-4": {
+            "EinLinuus\\PhpValidator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "EinLinuus",
+            "email": "github@linusbenkner.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

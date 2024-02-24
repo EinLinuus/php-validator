@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+namespace EinLinuus\PhpValidator\EinLinuus\PhpValidator;
+
+use DateTime;
+
 class ValidatorValue
 {
 
