@@ -22,13 +22,17 @@
 
 ## Installation
 
-All you need is to require the following files in your project:
+This package can be installed via [composer]([url](https://getcomposer.org/)):
 
-```php
-require_once 'inc/Validator.php';
-require_once 'inc/ValidatorException.php';
-require_once 'inc/ValidatorValue.php';
 ```
+composer require einlinuus/php-validator
+```
+
+> **New to composer?**
+> 
+> Composer is a dependency manager for PHP. Composer can install this package from the [packagist.org registry](https://packagist.org/packages/einlinuus/php-validator). Once installed, you'll find a `vendor` directory in your project.
+>
+> You can import all required files by importing the `autoload.php` file created by composer: `require_once __DIR__ . "/vendor/autoload.php";` With the autoload-file included in your project, you now have access to all classes and functions provided by this package.
 
 ## Usage
 
